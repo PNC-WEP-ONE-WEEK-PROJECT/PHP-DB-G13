@@ -1,0 +1,12 @@
+:root{
+    --maincolor:blue;
+    --bgColor:#fff;
+    --bdColor:gray;
+    --btnHover:none;
+}
+
+.bg-info{
+    margin-left: 35%;
+    margin-bottom: 10%;
+    background:var(--bgColor);
+}
