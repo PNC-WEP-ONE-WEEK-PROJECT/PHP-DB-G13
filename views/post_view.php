@@ -4,7 +4,6 @@
     require_once('models/post.php');
     $allPost = getAllPosts();
     foreach ($allPost as $post):
-        echo $post['postID'];
 
 ?>
     <div class="card mt-4">
@@ -23,7 +22,7 @@
                 <div class="col col-4"></div>
 
                 <div class="col col-3">
-                    <a href="">
+                    <a href="views/edit_post.php?id=<?= $post['postID']; ?>">
                         <div class="icon-edit btn btn-primary ms-10"><i class="fa fa-edit"></i></div>
                     </a>
                     <a href="controllers/delete_post.php?id=<?= $post['postID']; ?>">
@@ -51,7 +50,7 @@
                         <i class="btn btn-primary">2.k</i>
                         <i class="fa fa-comment btn btn-primary"></i>
                         <i class="btn btn-primary">2.k</i>
-                      
+
                     </div>
                 </div>
 

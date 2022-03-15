@@ -24,3 +24,6 @@
     margin-bottom: 10%;
     background:var(--bgColor);
 }
+.col a{
+    text-decoration: none;
+}
