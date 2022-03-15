@@ -3,15 +3,16 @@
 /**
  * Your code here
  */
-require_once('datebase.php');
-//create posts 
 
+require_once('database.php');
+//create posts 
+// $db= new PDO("mysql:host=localhost;dbname=fb_db",'root','');
 function createPost($userID,$description, $img)
 {
     global $db;
-    $statement = $db->prepare("INSERT INTO posts (userID,description, image) VALUES(:descrip,:images,:userID)");
+    $statement = $db->prepare("INSERT INTO posts (userID,description, image) VALUES(:userID,:description,:images)");
     $statement->execute(
-        [':descrip' => $description, ':images' => $img,':userID'=>$userID]
+        [':description' => $description, ':images' => $img,':userID'=>$userID]
     );
     return $statement->fetch();
 };
@@ -37,7 +38,7 @@ function getPost($postID){
 // getAllPosts
 function getAllPosts(){
     global $db;
-    $statement = $db->prepare("SELECT * FROM posts order by userID desc");
+    $statement = $db->prepare("SELECT * FROM posts order by postID desc");
     $statement->execute();
     return $statement->fetchAll();
 }

@@ -5,10 +5,22 @@
 .card-profile{
     width: 100px;
     height: 100px;
-  
+
 }
 .d-flex{
     display: flex;
     justify-content: space-between;
     text-align: center;
+}
+:root{
+    --maincolor:blue;
+    --bgColor:#fff;
+    --bdColor:gray;
+    --btnHover:none;
+}
+
+.bg-info{
+    margin-left: 35%;
+    margin-bottom: 10%;
+    background:var(--bgColor);
 }
