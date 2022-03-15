@@ -47,7 +47,7 @@ function getAllPosts(){
 
 function removePost($postID){
     global $db;
-    $statement=$db->prepare("DELETE FROM posts WHERE userID=:postID");
+    $statement=$db->prepare("DELETE FROM posts WHERE postID=:postID");
     $statement->execute([':postID' => $postID]);
     return $statement->fetch();
 }
