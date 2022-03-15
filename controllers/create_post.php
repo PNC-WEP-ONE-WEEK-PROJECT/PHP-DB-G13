@@ -1,11 +1,14 @@
 <?php
-echo 'hello';
+require_once "../models/post.php";
+// GET USER ID=====================================================
+$db= new PDO("mysql:host=localhost;dbname=fb_db",'root','');
+
+// ADD POST ATRIBUTE TO DATABASE ==================================
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    echo '<pre>';
-    print_r($_POST);
-    print_r($_FILES['image']);
-    echo '</pre>';
-    $ImageName=time().'_'.$_FILES["image"]['name'];
+    $discription= $_POST['discription'];
+    $imageName = $_FILES['image']['name'];
+    $ImageName=time().'_'.$imageName;
     $target='../images/'.$ImageName;
     move_uploaded_file($_FILES['image']['tmp_name'],$target);
+    createPost(1,$discription,$imageName);
 }
