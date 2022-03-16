@@ -7,8 +7,8 @@ $db= new PDO("mysql:host=localhost;dbname=fb_db",'root','');
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $discription= $_POST['discription'];
     $imageName = $_FILES['image']['name'];
-    $ImageName=$imageName;
-    $target='../images/'.$ImageName;
+
+    $target='../images/'.$imageName;
     move_uploaded_file($_FILES['image']['tmp_name'],$target);
     createPost(1,$discription,$imageName);
     header('location: ../index.php');
