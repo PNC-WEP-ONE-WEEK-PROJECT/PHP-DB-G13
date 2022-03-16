@@ -1,7 +1,7 @@
 <?php
 require_once "../models/post.php";
 // GET USER ID=====================================================
-$db= new PDO("mysql:host=localhost;dbname=fb_db",'root','');
+session_start();
 
 // ADD POST ATRIBUTE TO DATABASE ==================================
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -10,6 +10,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $ImageName=$imageName;
     $target='../images/'.$ImageName;
     move_uploaded_file($_FILES['image']['tmp_name'],$target);
-    createPost(1,$discription,$imageName);
-    header('location: ../index.php');
+    $_SESSION['discription']=false;
+    $_SESSION['image']['name']=false;
+    if(!empty($discription) and (!empty($imageName))){
+        createPost(1,$discription,$imageName);
+        header('location: ../index.php');
+    }
+    if(empty($_FILES['image']['name'] and isset($_FILES['image']['name']))){
+        $_SESSION['image']['name']=true;
+        header('location:../views/create_post.php');
+    }
+    if(empty($_POST['discription'] and isset($_POST['discription']))){
+        $_SESSION['discription']=true;
+        header('location:../views/create_post.php');
+    }
 }

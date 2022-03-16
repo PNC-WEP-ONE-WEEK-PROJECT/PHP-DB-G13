@@ -21,7 +21,7 @@ function createPost($userID,$description, $img)
 function updatePost($postID, $description, $img)
 {
     global $db;
-    $statement = $db->prepare("UPDATE posts SET description =:descrip ,image=:img WHERE userID=:postID");
+    $statement = $db->prepare("UPDATE posts SET description =:descrip ,image=:img WHERE postID=:postID");
     $statement->execute(
         [':descrip' => $description, ':img' => $img, ':postID' => $postID]
     );
@@ -31,7 +31,7 @@ function updatePost($postID, $description, $img)
 //get a post
 function getPost($postID){
     global $db;
-    $statement=$db->prepare('SELECT * FROM posts WHERE userID=:postID');
+    $statement=$db->prepare('SELECT * FROM posts WHERE postID=:postID');
     $statement->execute([':postID' => $postID]);
     return $statement->fetch();
 }
