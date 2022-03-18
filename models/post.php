@@ -51,3 +51,27 @@ function removePost($postID){
     $statement->execute([':postID' => $postID]);
     return $statement->fetch();
 }
+
+
+
+// FUNTION LIKE =============================================================
+
+
+
+// GET ALL LIKE IN THE TABLE OF DATABASE===========================================
+function getAllLike($postID){
+    global $db;
+    $statement = $db->prepare("SELECT * FROM likes WHERE postID = :postID");
+    $statement->execute([':postID' => $postID]);
+    return $statement->fetchAll();
+}
+// INSERT DATA INTO DATABASE=========================================================
+function pushLike($userID,$postID)
+{
+    global $db;
+    $statement = $db->prepare("INSERT INTO likes (userID,postID) VALUES(:userID,:postID)");
+    $statement->execute(
+        ['postID' => $postID,':userID'=>$userID]
+    );
+    return $statement->fetch();
+};

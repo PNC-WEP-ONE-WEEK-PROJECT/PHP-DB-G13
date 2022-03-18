@@ -7,6 +7,7 @@
     require_once('models/post.php');
     $allPost = getAllPosts();
     foreach ($allPost as $post):
+        $convertDate = date_create($post['date']);
 ?>
     <div class="card mt-4">
         <div class="card-header">
@@ -19,7 +20,7 @@
                 </div>
                 <div class="col col-3">
                     <p class="h4">Smey Cham</p>
-                    <p class="h6"><?= $post['date'] ?></p>
+                    <p class="h6"><?=date_format( $convertDate, '\ D, j, M,Y');?></p>
                 </div>
                 <div class="col col-4"></div>
 
@@ -28,7 +29,7 @@
                         <div class="icon-edit btn btn-primary ms-10"><i class="fa fa-edit"></i></div>
                     </a>
                     <a href="controllers/delete_post.php?id=<?= $post['postID']; ?>">
-                        <div class="btn btn-primary ms-3"><i class="fa fa-trash-o"></i></div>
+                        <div class="btn btn-danger ms-3"><i class="fa fa-trash-o"></i></div>
                     </a>
                 </div>
 
@@ -45,18 +46,20 @@
         </div>
         <div class="card-footer">
             <div class="row">
+                <?php
+                    //require_once "models/like.php";
+                    $likeList=getAllLike($post['postID']);
+                ?>
                 <div class="col">
                     <div class="btn-group">
-                        
-                        <i class="fa fa-thumbs-up btn btn-primary"></i>
-                        <i class="btn btn-primary">2.k</i>
+                        <a href="controllers/like_post.php?id=<?=$post['postID']?> & userID=<?=$post['userID']?> " class="btn btn-primary">
+                            <i class="fa fa-thumbs-up btn btn-primary"></i>
+                        </a>
+                        <i class="btn btn-primary"><?=count($likeList);  ?></i>
                         <i class="fa fa-comment btn btn-primary"></i>
                         <i class="btn btn-primary">2.k</i>
-
                     </div>
                 </div>
-
-                
             </div>
         </div>
 
