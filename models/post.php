@@ -7,12 +7,12 @@
 require_once('database.php');
 //create posts 
 // $db= new PDO("mysql:host=localhost;dbname=fb_db",'root','');
-function createPost($userID,$description, $img)
+function createPost($userID, $description, $img)
 {
     global $db;
     $statement = $db->prepare("INSERT INTO posts (userID,description, image) VALUES(:userID,:description,:images)");
     $statement->execute(
-        [':description' => $description, ':images' => $img,':userID'=>$userID]
+        [':description' => $description, ':images' => $img, ':userID' => $userID]
     );
     return $statement->fetch();
 };
@@ -29,14 +29,16 @@ function updatePost($postID, $description, $img)
 }
 
 //get a post
-function getPost($postID){
+function getPost($postID)
+{
     global $db;
-    $statement=$db->prepare('SELECT * FROM posts WHERE postID=:postID');
+    $statement = $db->prepare('SELECT * FROM posts WHERE postID=:postID');
     $statement->execute([':postID' => $postID]);
     return $statement->fetch();
 }
 // getAllPosts
-function getAllPosts(){
+function getAllPosts()
+{
     global $db;
     $statement = $db->prepare("SELECT * FROM posts order by postID desc");
     $statement->execute();
@@ -45,9 +47,27 @@ function getAllPosts(){
 
 //vemove post from
 
-function removePost($postID){
+function removePost($postID)
+{
     global $db;
-    $statement=$db->prepare("DELETE FROM posts WHERE postID=:postID");
+    $statement = $db->prepare("DELETE FROM posts WHERE postID=:postID");
     $statement->execute([':postID' => $postID]);
     return $statement->fetch();
 }
+function comments($postID, $userID,$content)
+{
+    
+    global $db;
+    $statement = $db->prepare("INSERT INTO posts (userID,PostId) VALUES(:userID,:postID)");
+    $statement->execute(
+        [':postID' => $postID, ':userID' => $userID]
+    );
+}
+// function getAllLikes($postID, $userID)
+// {
+//     global $db;
+//     $statement = $db->prepare(SELECT * FROM likes WHERE postID=:postID");
+//     $statement->execute(
+//         [':postID' => $postID, ':userID' => $userID]
+//     );
+// }
