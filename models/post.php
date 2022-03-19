@@ -54,20 +54,51 @@ function removePost($postID)
     $statement->execute([':postID' => $postID]);
     return $statement->fetch();
 }
-function comments($postID, $userID,$content)
+
+
+
+// FUNTION LIKE =============================================================
+
+
+
+// GET ALL LIKE IN THE TABLE OF DATABASE===========================================
+function getAllLike($postID){
+    global $db;
+    $statement = $db->prepare("SELECT * FROM likes WHERE postID = :postID");
+    $statement->execute([':postID' => $postID]);
+    return $statement->fetchAll();
+}
+// INSERT DATA INTO DATABASE=========================================================
+function pushLike($userID,$postID)
+{
+    global $db;
+    $statement = $db->prepare("INSERT INTO likes (userID,postID) VALUES(:userID,:postID)");
+    $statement->execute(
+        ['postID' => $postID,':userID'=>$userID]
+    );
+    return $statement->fetch();
+};
+
+
+// get post
+function getComments($postID)
 {
     
     global $db;
-    $statement = $db->prepare("INSERT INTO posts (userID,PostId) VALUES(:userID,:postID)");
+    $statement = $db->prepare("SELECT * FROM comments WHERE postID=:postID");
     $statement->execute(
-        [':postID' => $postID, ':userID' => $userID]
+        [':postID' => $postID]
     );
+    return $statement->fetchAll();
 }
-// function getAllLikes($postID, $userID)
-// {
-//     global $db;
-//     $statement = $db->prepare(SELECT * FROM likes WHERE postID=:postID");
-//     $statement->execute(
-//         [':postID' => $postID, ':userID' => $userID]
-//     );
-// }
+
+// add post 
+function addComment($postID, $userID,$comment)
+{
+    global $db;
+    $statement = $db->prepare("INSERT INTO comments(postID,userID,comment) VALUES(:postID,:userID,:comment)");
+    $statement->execute(
+        [':postID' => $postID, ':userID' => $userID,':comment' => $comment]
+    );
+    return $statement->rowCount()>0;
+}  

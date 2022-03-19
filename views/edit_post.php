@@ -16,7 +16,7 @@ if ($postID != null) {
         <h1 class="text-center text-light mb-5 h1">Post</h1>
         <input type="hidden" name="postID" value="<?= $postID ?>">
         <input type="file" name="image" class="form-control">
-        <textarea name="discription" class="form-control mt-2" placeholder="discription.."></textarea>
+        <textarea name="discription" class="form-control mt-2"placeholder="discription.."><?=$post['description']?></textarea>
         <div class="form-group d-grid mt-2">
             <input type="submit" class="btn btn-light" value="Update">
         </div>
