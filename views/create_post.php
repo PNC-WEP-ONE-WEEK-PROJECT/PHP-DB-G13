@@ -1,5 +1,5 @@
 <div class="container mt-3">
-    <div class="row rounded sticky-top bg-light">
+    <div class="row rounded sticky-top bg-light p-2">
         <div class="col col-8 d-flex align-items-center justify-content-center">
             <p class='text'> Do you want to add post?</p>
         </div>
@@ -25,9 +25,12 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-                <form action="controllers/create_post.php" enctype="multipart/form-data" method="post" class="form-group h-50 w-100 mt-5 bg-primary p-5 rounded-3">
+                <form action="controllers/create_post.php" enctype="multipart/form-data" method="post" class="form-group h-50 w-100 mt-5 bg-primary p-5 rounded-3 text-center" >
                     <h1 class="text-center text-light mb-5 h1">Post</h1>
-                    <input type="file" name="image" class="form-control  ">
+                    <label for="firstimage">
+                        <i class="fa fa-image" style="font-size:5rem;color:greenyellow"></i>
+                    </label>
+                    <input type="file" name="image" class="form-control " id="firstimage" style="display:none;">
                     <?php
                         session_start();
                         if(isset($_SESSION['image']['name']) and $_SESSION['image']['name']){
