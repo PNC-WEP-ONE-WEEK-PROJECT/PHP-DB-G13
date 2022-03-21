@@ -11,7 +11,7 @@ foreach($listOfLike as $like){
 }
 if($isHave){
     pushLike($_GET['userID'], $_GET['id']);
-    header('Location:../index.php');
+    header('Location:../pages/home.php');
 }
 else{
     header('Location:../include/include.php');

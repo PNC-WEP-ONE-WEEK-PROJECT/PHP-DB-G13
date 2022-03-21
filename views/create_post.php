@@ -1,10 +1,10 @@
-<div class="container mt-3">
-    <div class="row rounded sticky-top bg-light">
-        <div class="col col-8 d-flex align-items-center justify-content-center">
-            <p class='text'> Do you want to add post?</p>
+<div class="container mt-5 p-3">
+    <div class="row rounded">
+        <div class="col col-10 d-flex align-items-center justify-content-center bg-light">
+            <p class='text mt-2'> Do you want to add post?</p>
         </div>
-        <div class="col col-4 d-flex justify-content-end">
-            <button type="button" class="btn btn-primary w-25" data-bs-toggle="modal" data-bs-target="#myModal">
+        <div class="col col-2 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
                 Post
             </button>
         </div>

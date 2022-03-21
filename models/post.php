@@ -40,7 +40,7 @@ function getPost($postID)
 function getAllPosts()
 {
     global $db;
-    $statement = $db->prepare("SELECT * FROM posts order by postID desc");
+    $statement = $db->prepare("SELECT * FROM posts join users on posts.userID=users.userID order by postID desc");
     $statement->execute();
     return $statement->fetchAll();
 }

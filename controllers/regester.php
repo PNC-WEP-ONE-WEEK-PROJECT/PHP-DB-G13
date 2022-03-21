@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {}
         }
     if ($isUserCreated==false) {
         createAccount($firstName,$lastName,$date,$gender,$email,$password);
-        header('Location:../include/include.php');
+        header('Location:../pages/home.php');
     }else{
         header('Location:../user_account/create_account.php');
 

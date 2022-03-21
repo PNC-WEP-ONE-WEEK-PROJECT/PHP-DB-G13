@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') :
         }
     }
     if ($isUserCreated) {
-        header('Location:../include/include.php');
+        header('Location:../pages/home.php');
     } else {
         header('Location:../index.php');
     }
