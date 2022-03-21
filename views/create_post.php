@@ -23,6 +23,7 @@
                 <h4 class="modal-title">Add Post</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+
             <!-- Modal body -->
             <div class="modal-body">
                 <form action="controllers/create_post.php" enctype="multipart/form-data" method="post" class="form-group h-50 w-100 mt-5 bg-primary p-5 rounded-3 text-center" >
@@ -38,11 +39,7 @@
                         }
                     ?>
                     <textarea name="discription" class="form-control mt-2" placeholder="discription.."></textarea>
-                       <?php
-                        if(isset($_SESSION['discription'])and $_SESSION['discription']){
-                            echo "<p class='text-danger' please write discription ?? </p>";
-                        }
-                       ?>
+                      
                     <div class="form-group d-grid mt-2">
                         <input type="submit" class="btn btn-info" value="POST">
                     </div>

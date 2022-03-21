@@ -5,19 +5,19 @@
  */
 
 require_once('database.php');
-//create posts 
-// $db= new PDO("mysql:host=localhost;dbname=fb_db",'root','');
-function createPost($userID,$description, $img)
+//create posts ==============================================================
+
+function createPost($userID, $description, $img)
 {
     global $db;
     $statement = $db->prepare("INSERT INTO posts (userID,description, image) VALUES(:userID,:description,:images)");
     $statement->execute(
-        [':description' => $description, ':images' => $img,':userID'=>$userID]
+        [':description' => $description, ':images' => $img, ':userID' => $userID]
     );
     return $statement->fetch();
 };
 
-//Update  post
+//Update  post====================================================================
 function updatePost($postID, $description, $img)
 {
     global $db;
@@ -28,26 +28,29 @@ function updatePost($postID, $description, $img)
     return $statement->fetch();
 }
 
-//get a post
-function getPost($postID){
+//get a post=====================================================================
+function getPost($postID)
+{
     global $db;
-    $statement=$db->prepare('SELECT * FROM posts WHERE postID=:postID');
+    $statement = $db->prepare('SELECT * FROM posts WHERE postID=:postID');
     $statement->execute([':postID' => $postID]);
     return $statement->fetch();
 }
-// getAllPosts
-function getAllPosts(){
+// getAllPosts===============================================================
+function getAllPosts()
+{
     global $db;
     $statement = $db->prepare("SELECT * FROM posts order by postID desc");
     $statement->execute();
     return $statement->fetchAll();
 }
 
-//vemove post from
+//vemove post from============================================================
 
-function removePost($postID){
+function removePost($postID)
+{
     global $db;
-    $statement=$db->prepare("DELETE FROM posts WHERE postID=:postID");
+    $statement = $db->prepare("DELETE FROM posts WHERE postID=:postID");
     $statement->execute([':postID' => $postID]);
     return $statement->fetch();
 }
@@ -75,3 +78,40 @@ function pushLike($userID,$postID)
     );
     return $statement->fetch();
 };
+// get post
+function getComments($postID)
+{
+    
+    global $db;
+    $statement = $db->prepare("SELECT * FROM comments WHERE postID=:postID");
+    $statement->execute(
+        [':postID' => $postID]
+    );
+    return $statement->fetchAll();
+}
+
+// add post =============================================================================
+function addComment($postID, $userID,$comment)
+{
+    global $db;
+    $statement = $db->prepare("INSERT INTO comments(postID,userID,comment) VALUES(:postID,:userID,:comment)");
+    $statement->execute(
+        [':postID' => $postID, ':userID' => $userID,':comment' => $comment]
+    );
+    return $statement->rowCount()>0;
+}  
+
+
+
+
+
+// User pofile=====================================================================
+
+
+function getbyUser($userID){
+    global $db;
+    $statement= $db->prepare("SELECT * FROM posts WHERE userID =:userID ORDER BY postID DESC");
+    $statement->execute([':userID' => $userID]);
+    return $statement->fetchAll();
+}
+
