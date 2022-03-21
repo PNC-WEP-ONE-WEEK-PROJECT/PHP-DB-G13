@@ -14,6 +14,6 @@ if($isHave){
     header('Location:../index.php');
 }
 else{
-    header('Location:../index.php');
+    header('Location:../include/include.php');
 }
 ?>

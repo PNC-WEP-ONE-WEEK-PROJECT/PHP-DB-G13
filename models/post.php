@@ -102,3 +102,25 @@ function addComment($postID, $userID,$comment)
     );
     return $statement->rowCount()>0;
 }  
+
+function getUser(){
+    global $db;
+    $statement = $db->prepare("SELECT* FROM users");
+    $statement->execute();
+    return $statement->fetchAll();
+
+}
+function createAccount($firstName,$lastName,$date,$gender,$email,$passwords){
+    global $db;
+    $statement = $db->prepare("INSERT INTO users(firstName,lastName,date,gender,email,password) VALUES(:firstName,:lastName,:date,:gender,:email,:password)");
+    $statement->execute(
+        [
+            ':firstName' => $firstName,
+            ':lastName' => $lastName,
+            ':date' => $date,
+            ':gender' => $gender,
+            ':email'=> $email,
+            ':password' => $passwords,
+        ]
+    );
+}

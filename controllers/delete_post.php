@@ -5,4 +5,4 @@
 require_once "../models/post.php";
 $id=$_GET['id'];
 removePost($id);
-header("Location:../index.php");
+header("Location:../include/include.php");

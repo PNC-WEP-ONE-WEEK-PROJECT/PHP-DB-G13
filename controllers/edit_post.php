@@ -9,6 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     move_uploaded_file($_FILES['image']['tmp_name'], $target);
     if (!empty($postID) and !empty($description) and !empty($imageName)) {
         updatePost($postID, $description, $ImageName );
-        header('location: ../index.php'); 
+        header('location: ../include/include.php'); 
     }
 }
