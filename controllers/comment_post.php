@@ -7,6 +7,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $comment= $_POST['comment'];
     if(!empty($postID) and !empty($userID) and !empty($comment)){
       $commented=addComment($postID,$userID,$comment);
+    if($commented){
+        header('location: ../include/include.php');
+    }
     }
     header('location: ../index.php');
 }

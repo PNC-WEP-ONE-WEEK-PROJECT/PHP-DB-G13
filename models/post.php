@@ -78,6 +78,15 @@ function pushLike($userID,$postID)
     );
     return $statement->fetch();
 };
+// Unlike========================================================================
+function removeLike($userID,$postID){
+    global $db;
+    $statement=$db->prepare("DELETE FROM likes WHERE postID=:postID AND userID=:userID");
+    $statement->execute(
+        ['postID' => $postID,':userID'=>$userID]
+    );
+    return $statement->fetch();
+}
 // get post
 function getComments($postID)
 {
@@ -115,3 +124,32 @@ function getbyUser($userID){
     return $statement->fetchAll();
 }
 
+function getUser(){
+    global $db;
+    $statement = $db->prepare("SELECT* FROM users");
+    $statement->execute();
+    return $statement->fetchAll();
+
+}
+function createAccount($firstName,$lastName,$date,$gender,$email,$passwords){
+    global $db;
+    $statement = $db->prepare("INSERT INTO users(firstName,lastName,date,gender,email,password) VALUES(:firstName,:lastName,:date,:gender,:email,:password)");
+    $statement->execute(
+        [
+            ':firstName' => $firstName,
+            ':lastName' => $lastName,
+            ':date' => $date,
+            ':gender' => $gender,
+            ':email'=> $email,
+            ':password' => $passwords,
+        ]
+    );
+}
+function getUserID($emial){
+    global $db;
+    $statement=$db->prepare("SELECT userID FROM users WHERE email=:email");
+    $statement->execute([
+        ':email' => $emial,
+    ]);
+    return $statement->fetchAll();
+}

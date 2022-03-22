@@ -2,20 +2,25 @@
 <?php
 require_once('../templates/header.php');
 ?>
-    <div class="container bg-light w-50">
+    <div class="container bg-light" style="width:60%">
 
     
-    <div class="cover w-100 m-auto" style="border:3px solid blue;">
+    <div class="cover w-100 m-auto" style="border:3px solid black;">
         <img src="../images/24701-nature-natural-beauty.jpg" class="w-100 " alt="">
     </div>
-    <div class="image w-50 bg-danger rounded-circle" style="height:50vh;"> 
-        <img src="../images/favfoto.jpg" class="w-100 rounded-circle" style="height:50vh; margin:-100 auto" alt="">
+    <div class="image bg-danger rounded-circle text-center" style="height:35vh;z-index: index -1;border:2px solid black; margin:-100px auto;width:30%;box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;"> 
+        <img src="../images/favfoto.jpg" class="w-100 rounded-circle" style="height:35vh; margin:-100 auto;" alt="">
+        <h2 class="mt-3">CHAM SMEY</h2>
     </div>
     
     
-    <div class="container" style="margin-top:100px;width:100%">
+    <div class="container" style="margin-top:200px;width:100%">
     <?php
     require_once('../models/post.php');
+    session_start();
+    $_SESSION['email']=false;
+    // $myID=getUserID($_GET['userEmail']);
+    
     $allPost = getbyUser(1);
     foreach ($allPost as $post) :
         $convertDate = date_create($post['date']);

@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(!empty($discription) or (!empty($imageName))){
         createPost(1,$discription,$imageName);
     }
-    header('location: ../index.php');
+    header('location: ../include/include.php');
 
 }
 

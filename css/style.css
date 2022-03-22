@@ -1,5 +1,7 @@
 
-    
+body{
+    background:rgba(128, 128, 128, 0.582);
+}
 .container{
     width: 60%;
 }
@@ -8,11 +10,6 @@
     width: 100px;
     height: 100px;
    
-}
-.d-flex{
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
 }
 :root{
     --maincolor:blue;
@@ -29,4 +26,18 @@
 .box-shadow{
     border: 1px solid black;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+/* // cham  */
+
+.bi-house-fill,.bi-people,.bi-person-circle{
+    margin: 10px;
+    font-size:2em;
+    color:#1877F2;
+}
+
+/* profile */
+.image-profile{
+    width: 70px;
+    height: 70px;
+    position: static;
 }
