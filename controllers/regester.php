@@ -24,14 +24,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {}
                 $isUserCreated = true;
             }
         }
-    if ($isUserCreated==false) {
-        createAccount($firstName,$lastName,$date,$gender,$email,$password);
-        $_SESSION['email']=$_POST['email'];
-        header("Location:../include/include.php");
-    }else{
-        header('Location:../user_account/create_account.php');
-
-    }
+    
+        if ($isUserCreated==false) {
+            createAccount($firstName,$lastName,$date,$gender,$email,$password);
+           $user_account= getUsers($email,$password);
+           $userID= $user_account['userID'];
+            echo $userID;
+            header("Location:../pages/home.php?id=$userID");
+        }else{
+            header('Location:../user_account/create_account.php');
+    
     
 
     }

@@ -14,7 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') :
         }
     }
     if ($isUserCreated) {
-        header('Location:../include/include.php');
+        $user_account= getUsers($email,$password);
+        $userID= $user_account['userID'];
+        echo $userID;
+        header("Location:../pages/home.php?id=$userID");
     } else {
         header('Location:../index.php');
     }

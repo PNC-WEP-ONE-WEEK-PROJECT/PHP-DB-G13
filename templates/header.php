@@ -15,6 +15,6 @@
     <link rel="stylesheet" href="../css/style.css">
 
 </head>
-<body>
+<body style="background:rgba(128, 128, 128, 0.288);">
 
     

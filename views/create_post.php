@@ -1,10 +1,10 @@
-<div class="container mt-3">
-    <div class="row rounded sticky-top bg-light p-2">
-        <div class="col col-8 d-flex align-items-center justify-content-center">
-            <p class='text'> Do you want to add post?</p>
+<div class="container mt-5 p-3">
+    <div class="row rounded">
+        <div class="col col-10 d-flex align-items-center justify-content-center bg-light">
+            <p class='text mt-2'> Do you want to add post?</p>
         </div>
-        <div class="col col-4 d-flex justify-content-end">
-            <button type="button" class="btn btn-primary w-25" data-bs-toggle="modal" data-bs-target="#myModal">
+        <div class="col col-2 d-flex justify-content-end">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
                 Post
             </button>
         </div>
@@ -26,10 +26,11 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form action="../controllers/create_post.php" enctype  ="multipart/form-data" method="post" class="form-group h-50 w-100 mt-5 bg-primary p-5 rounded-3">
+                <form action="../controllers/create_post.php" enctype  ="multipart/form-data" method="post" class="form-group h-50 w-100 mt-5 bg-primary p-5 rounded-3 text-center">
                     <h1 class="text-center text-light mb-5 h1">Post</h1>
+                    <input type="hidden" name="userID" value="<?=$_GET['id']?>"/>
                     <label for="firstimage">
-                        <i class="fa fa-image" style="font-size:5rem;color:greenyellow"></i>
+                        <i class="fa fa-image" style="font-size:5rem;color:rgb(157, 250, 8)"></i>
                     </label>
                     <input type="file" name="image" class="form-control " id="firstimage" style="display:none;">
                     <?php

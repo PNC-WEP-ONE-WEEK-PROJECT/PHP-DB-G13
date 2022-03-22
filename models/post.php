@@ -40,7 +40,7 @@ function getPost($postID)
 function getAllPosts()
 {
     global $db;
-    $statement = $db->prepare("SELECT * FROM posts order by postID desc");
+    $statement = $db->prepare("SELECT * FROM posts join users on posts.userID=users.userID order by postID desc");
     $statement->execute();
     return $statement->fetchAll();
 }
@@ -119,7 +119,7 @@ function addComment($postID, $userID,$comment)
 
 function getbyUser($userID){
     global $db;
-    $statement= $db->prepare("SELECT * FROM posts WHERE userID =:userID ORDER BY postID DESC");
+    $statement= $db->prepare("SELECT * FROM posts JOIN users ON posts.userID = users.userID WHERE users.userID =:userID ORDER BY postID DESC");
     $statement->execute([':userID' => $userID]);
     return $statement->fetchAll();
 }
@@ -145,11 +145,16 @@ function createAccount($firstName,$lastName,$date,$gender,$email,$passwords){
         ]
     );
 }
-function getUserID($emial){
+
+
+function getUsers($email,$password){
     global $db;
-    $statement=$db->prepare("SELECT userID FROM users WHERE email=:email");
-    $statement->execute([
-        ':email' => $emial,
-    ]);
-    return $statement->fetchAll();
+    $statement = $db->prepare("SELECT* FROM users where email=:email and password=:password");
+    $statement->execute(
+        [
+            ':email'=>$email,
+            ':password'=>$password
+        ]
+    );
+    return $statement->fetch();
 }

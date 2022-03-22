@@ -1,5 +1,3 @@
-
-
 <?php
 
 require_once('../models/post.php');
@@ -13,10 +11,10 @@ foreach($listOfLike as $like){
 }
 if($isHave){
     pushLike($_GET['userID'], $_GET['id']);
-    header('Location:../pages/home.php');
+    header('Location:../views/user_account.php');
 }
 else{
     removeLike($_GET['userID'], $_GET['id']);
-    header('Location:../pages/home.php');
+    header('Location:../views/user_account.php');
 }
 ?>

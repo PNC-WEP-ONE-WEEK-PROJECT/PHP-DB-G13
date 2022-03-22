@@ -17,11 +17,8 @@ require_once('../templates/header.php');
     <div class="container" style="margin-top:200px;width:100%">
     <?php
     require_once('../models/post.php');
-    session_start();
-    $_SESSION['email']=false;
-    // $myID=getUserID($_GET['userEmail']);
-    
-    $allPost = getbyUser(1);
+    $userID=$_GET['id'];
+    $allPost = getbyUser($userID);
     foreach ($allPost as $post) :
         $convertDate = date_create($post['date']);
     ?>
@@ -35,7 +32,9 @@ require_once('../templates/header.php');
 
                     </div>
                     <div class="col col-3">
-                        <p class="h4">Smey Cham</p>
+                        <div class="row">            
+                            <p class="h5 text-start"> <?=$post['firstName']." "?><?=$post['lastName']?> </p>
+                        </div>
                         <p class="h6"><?= date_format($convertDate, '\ D, j, M,Y'); ?></p>
                     </div>
                     <div class="col col-4"></div>
@@ -68,7 +67,7 @@ require_once('../templates/header.php');
                     ?>
                     <div class="col col-2">
                         <div class="btn-group">
-                            <a href="../controllers/like_post.php?id=<?= $post['postID'] ?> & userID=<?= $post['userID'] ?> " class="btn btn-primary">
+                            <a href="../controllers/like_profile.php?id=<?= $post['postID'] ?> & userID=<?= $post['userID'] ?> " class="btn btn-primary">
                                 <i class="fa fa-thumbs-up btn btn-primary"></i>
                             </a>
                             <i class="btn btn-primary"><?= count($likeList); ?></i>
