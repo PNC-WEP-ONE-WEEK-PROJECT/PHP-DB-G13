@@ -34,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {}
         }else{
             header('Location:../user_account/create_account.php');
     
-    
-
     }
 
+}
