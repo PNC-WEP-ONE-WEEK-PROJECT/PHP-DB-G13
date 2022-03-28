@@ -8,8 +8,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(!empty($postID) and !empty($userID) and !empty($comment)){
       $commented=addComment($postID,$userID,$comment);
     if($commented){
-      header('Location:../pages/home.php');
+      header("Location:../pages/home.php?id=$postID&userID=$userID");
     }
     }
-    header('location: ../pages/home.php');
 }

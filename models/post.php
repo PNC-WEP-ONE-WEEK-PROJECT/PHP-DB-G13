@@ -131,9 +131,20 @@ function getUser(){
     return $statement->fetchAll();
 
 }
-function createAccount($firstName,$lastName,$date,$gender,$email,$passwords){
+function getUserAccount($userID){
     global $db;
-    $statement = $db->prepare("INSERT INTO users(firstName,lastName,date,gender,email,password) VALUES(:firstName,:lastName,:date,:gender,:email,:password)");
+    $statement = $db->prepare("SELECT* FROM users WHERE userID=:userID");
+    $statement->execute(
+        [
+            ':userID' => $userID
+        ]
+    );
+    return $statement->fetch();
+
+}
+function createAccount($firstName,$lastName,$date,$gender,$email,$passwords,$profile){
+    global $db;
+    $statement = $db->prepare("INSERT INTO users(firstName,lastName,date,gender,email,password,profile) VALUES(:firstName,:lastName,:date,:gender,:email,:password,:profile)");
     $statement->execute(
         [
             ':firstName' => $firstName,
@@ -142,6 +153,7 @@ function createAccount($firstName,$lastName,$date,$gender,$email,$passwords){
             ':gender' => $gender,
             ':email'=> $email,
             ':password' => $passwords,
+            ':profile'=>$profile
         ]
     );
 }

@@ -9,12 +9,15 @@ foreach($listOfLike as $like){
         $isHave=false;
     }
 }
+
+$userID= $_GET['userID'];
 if($isHave){
     pushLike($_GET['userID'], $_GET['id']);
-    header('Location:../views/user_account.php');
+    header("Location:../pages/user_account.php?userID=$userID");
 }
 else{
     removeLike($_GET['userID'], $_GET['id']);
-    header('Location:../views/user_account.php');
+    header("Location:../pages/user_account.php?userID=$userID");
+    // header("Location:../views/user_account.php?id=$userID");
 }
 ?>

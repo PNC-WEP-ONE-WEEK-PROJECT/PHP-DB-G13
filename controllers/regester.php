@@ -17,6 +17,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {}
     $date=$_POST['date'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    if(!empty($_FILES['image']['name'])){
+        $imageName = $_FILES['image']['name'];
+
+    }else if ($gender=='male'){
+        $imageName="male.png";
+    }else{
+        $imageName="female.png";
+
+    }
+    
+    $target='../images/'.$imageName;
+    if(!(file_exists($target))){
+        move_uploaded_file($_FILES['image']['tmp_name'],$target);
+    }
     if (!empty($email) && !empty($password)) {
         foreach ($users as $user) {
 
@@ -26,11 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {}
         }
     
         if ($isUserCreated==false) {
-            createAccount($firstName,$lastName,$date,$gender,$email,$password);
-           $user_account= getUsers($email,$password);
-           $userID= $user_account['userID'];
+            createAccount($firstName,$lastName,$date,$gender,$email,$password, $imageName);
+            $user_account= getUsers($email,$password);
+            $userID= $user_account['userID'];
             echo $userID;
-            header("Location:../pages/home.php?id=$userID");
+            header("Location:../pages/home.php?userID=$userID");
         }else{
             header('Location:../user_account/create_account.php');
     

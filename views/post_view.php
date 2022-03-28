@@ -1,6 +1,9 @@
 <div class="container">
     <!----test---->
 
+    <?php
+    isset($_GET['userID']) ? $userID=$_GET['userID'] : $userID=null;
+    ?>
     <!-- Your code here -->
 
     <?php
@@ -13,7 +16,7 @@
             <div class="card-header pb-0">
                 <div class="row d-flex">
                     <div class="col col-2 d-flex">
-                        <div class="image-profile pb-1 pb-1 bg-danger rounded-circle">
+                        <div class="image-profile pb-1 pb-1 rounded-circle">
                             <img src="../images/<?=$post['profile']?>" class="w-100 position-static image-profile rounded-circle" alt="">
                         </div>
 
@@ -36,6 +39,9 @@
                     <!-- <div class="col col-3"></div> -->
 
                     <div class="col col-2"></div>
+                    <?php
+                    if($post['userID']==$userID){
+                    ?>
                     <div class="col col-3 pb-0">
                         <button type="button" class="icon-edit btn btn-primary ms-10" data-bs-toggle="modal" data-bs-target="#myModal<?= $post['postID']; ?>"><i class="bi bi-pencil-square"></i></button>
                         <div class="modal" id="myModal<?= $post['postID']; ?>">
@@ -51,13 +57,12 @@
                                         <?php
                                         getPost($post['postID']);
                                         ?>
-                                        <form action="../controllers/edit_post.php" enctype="multipart/form-data" method="post" class="form-group h-50 w-100 mt-5 bg-primary p-5 rounded-3 text-center">
-                                            <h1 class="text-center text-light mb-5 h1">Post</h1>
+                                        <form action="../controllers/edit_post.php?userID=<?=$userID?>" enctype="multipart/form-data" method="post" class="form-group h-50 w-100 mt-5 bg-primary p-5 rounded-3 text-center">
+                                            <h1 class="text-center text-light mb-5 h3   ">Update</h1>
                                             <input type="hidden" name="postID" value="<?=$post['postID']?>">
-                                            <label for="firstimage">
-                                                <i class="fa fa-image" style="font-size:5rem;color:greenyellow"></i>
-                                            </label>
-                                            <input type="file" name="image" class="form-control " id="firstimage" style="display:none;">
+                                        
+                                            <input type="file" name="image" class="form-control" value="<?=$post['image']?>">
+                                            <input type="hidden" name="oldImage" class="form-control" value="<?=$post['image']?>">
                                             <textarea name="discription" class="form-control mt-2" placeholder="discription.."></textarea>
                                             <div class="form-group d-grid mt-2">
                                                 <input type="submit" class="btn btn-light" value="Update">
@@ -65,12 +70,15 @@
                                         </form>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
-                        <a href="../controllers/delete_post.php?id=<?= $post['postID']; ?>">
+                        <a href="../controllers/delete_post.php?id=<?=$post['postID']?>&userID=<?=$userID?>">
                             <div class="btn btn-danger ms-3"><i class="fa fa-trash-o"></i></div>
                         </a>
                     </div>
+                    <?php
+                    }
+                    ?>
 
                 </div>
             </div>
@@ -91,7 +99,7 @@
                     ?>
                     <div class="col col-3">
                         <div class="btn-group">
-                            <a href="../controllers/like_post.php?id=<?= $post['postID'] ?> & userID=<?= $post['userID'] ?> " class="btn btn-primary">
+                            <a href="../controllers/like_post.php?id=<?= $post['postID'] ?> & userID=<?=$userID  ?> " class="btn btn-primary">
                                 <i class="fa fa-thumbs-up btn btn-primary"></i>
                             </a>
                             <i class="btn btn-primary"><?= count($likeList); ?></i>
@@ -106,9 +114,9 @@
                                         Comment
                                     </button>
                                 </h2>
-                                <div id="collapse<?= $post['postID'] ?>" class="collapse">
+                                <div id="collapse<?=$post['postID']?>" class="collapse">
                                     <form action="../controllers/comment_post.php" method="post">
-                                        <input type="hidden" name="userID" value="<?= $post['userID'] ?>">
+                                        <input type="hidden" name="userID" value="<?=$userID?>">
                                         <input type="hidden" name="postID" value="<?= $post['postID'] ?>">
                                         <div class="accordion-body form-floating">
                                             <input type="text" name="comment" id="" class="form-control" placeholder="comment..." required>

@@ -2,9 +2,9 @@
 require_once "../models/post.php";
 // GET USER ID=====================================================
 
-$userID=$_POST['userID'];
 // ADD POST ATRIBUTE TO DATABASE ==================================
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $userID=$_POST['userID'];
     $discription= $_POST['discription'];
     $imageName = $_FILES['image']['name'];
     $target='../images/'.$imageName;
@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(!empty($discription) or (!empty($imageName))){
         createPost($userID,$discription,$imageName);
     }
-    header("Location:../pages/home.php?id=$userID");
+    header("Location:../pages/home.php?userID=$userID");
 
 }
 

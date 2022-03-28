@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') :
         $user_account= getUsers($email,$password);
         $userID= $user_account['userID'];
         echo $userID;
-        header("Location:../pages/home.php?id=$userID");
+        header("Location:../pages/home.php?userID=$userID");
     } else {
         header('Location:../index.php');
     }

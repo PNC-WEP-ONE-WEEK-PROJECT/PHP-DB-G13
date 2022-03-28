@@ -4,9 +4,9 @@ require_once"../templates/navbar.php";
 
 ?>
 
-<div class="container">
-    <div class="row">
-        <img src="../images/empty.jpg" alt="">
+<div class="container mt-5">
+    <div class="row mt-5">
+        <img src="../images/no-result.gif" alt="" class="mt-5">
     </div>
 </div>
 

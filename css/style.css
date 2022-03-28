@@ -3,14 +3,11 @@
     width: 50%;
     
 }
+a{
+    text-decoration: none;
+}
 .shadow{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-}
-.position{
-    position: fixed ;
-    top: 0;
-    z-index:1;
-    /* background:rgba(128, 128, 128, 0.288); */
 }
 
 .card-profile{
@@ -30,10 +27,7 @@
     margin-bottom: 10%;
     background:var(--bgColor);
 }
-.box-shadow{
-    border: 1px solid black;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-}
+
 /* // cham  */
 
 .bi-house-fill,.bi-people,.bi-person-circle{
@@ -47,4 +41,9 @@
     width: 70px;
     height: 70px;
     position: static;
+}
+.img-center{
+    width: 200px;   
+    height: 200px;   
+
 }

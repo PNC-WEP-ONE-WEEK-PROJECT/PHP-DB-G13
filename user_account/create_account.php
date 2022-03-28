@@ -5,7 +5,7 @@ require_once '../templates/header.php'; ?>
         <div class="card">
             <!-- card header -->
             <div class="card-header">
-                <p class="h3 text-center text-primary text-bold">Create Account</p>
+                <p class="h2 text-bold text-center text-primary text-bold">Sign up</p>
             </div>
             <!-- card body -->
             <div class="card-body">
@@ -39,6 +39,11 @@ require_once '../templates/header.php'; ?>
                         <input type="password" class="form-control" placeholder="Enter password" name="password" required>
                     </div>
                 </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        <input type="file" class="form-control">
+                    </div>
+                </div>
             </div>
             <!-- card footer -->
             <div class="card-footer">
@@ -55,7 +60,7 @@ require_once '../templates/header.php'; ?>
     
                 <div class="row">
                     <div class="col">
-                        <button type="submit" class="btn btn-primary form-control">create account</button>
+                        <button type="submit" class="btn btn-primary form-control">Sign up</button>
                     </div>
                 </div>
             </div>
